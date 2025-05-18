@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Hospital Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/css_20250512_93d048.css">
+
+
+    <style>
+        /* CSS will go here */
+        /* Detailed CSS provided below */
+    </style>
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i>
+                <span>MediCare HMS</span>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-user-injured"></i> Patients</a></li>
+                    <li><a href="html/login.html"><i class="fas fa-user-md"></i> Doctors</a></li>
+
+                    <li><a href="#"><i class="fas fa-pills"></i> Pharmacy</a></li>
+                    <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Billing</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <div class="notification">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                    <span>Dr. Smith</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <h3>Dashboard</h3>
+            </div>
+            <ul>
+                <li>
+                    <a href="#" class="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-procedures"></i>
+                        <span>Wards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-flask"></i>
+                        <span>Laboratory</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-x-ray"></i>
+                        <span>Radiology</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-ambulance"></i>
+                        <span>Emergency</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-file-medical"></i>
+                        <span>Medical Records</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Dashboard Overview</h1>
+                <div class="breadcrumb">
+                    <a href="#">Home</a>
+                    <span>/</span>
+                    <a href="#" class="active">Dashboard</a>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon bg-blue">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1,248</h3>
+                        <p>Total Patients</p>
+                    </div>
+                    <div class="stat-trend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>12%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon bg-green">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>48</h3>
+                        <p>Doctors</p>
+                    </div>
+                    <div class="stat-trend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>5%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon bg-orange">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>326</h3>
+                        <p>Today's Appointments</p>
+                    </div>
+                    <div class="stat-trend">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>3%</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon bg-red">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>84</h3>
+                        <p>In-Patients</p>
+                    </div>
+                    <div class="stat-trend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>8%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity and Patient Overview -->
+            <div class="content-row">
+                <div class="content-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Activities</h3>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <ul class="activity-list">
+                                <li>
+                                    <div class="activity-icon bg-blue">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>New patient registered - John Doe</p>
+                                        <span class="activity-time">10 mins ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-green">
+                                        <i class="fas fa-prescription-bottle-alt"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>Lab test completed for Sarah Smith</p>
+                                        <span class="activity-time">25 mins ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-orange">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>Invoice generated for Robert Johnson</p>
+                                        <span class="activity-time">1 hour ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-purple">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>Appointment scheduled with Dr. Lee</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="activity-icon bg-red">
+                                        <i class="fas fa-ambulance"></i>
+                                    </div>
+                                    <div class="activity-details">
+                                        <p>Emergency case admitted - Michael Brown</p>
+                                        <span class="activity-time">3 hours ago</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Patient Overview</h3>
+                            <div class="time-filter">
+                                <select>
+                                    <option>This Week</option>
+                                    <option>This Month</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="patientChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Upcoming Appointments</h3>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="appointment-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Department</th>
+                                    <th>Date & Time</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="patient-info">
+                                            <img src="https://via.placeholder.com/40" alt="Patient">
+                                            <span>John Doe</span>
+                                        </div>
+                                    </td>
+                                    <td>Dr. Smith</td>
+                                    <td>Cardiology</td>
+                                    <td>Today, 10:30 AM</td>
+                                    <td><span class="status confirmed">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="patient-info">
+                                            <img src="https://via.placeholder.com/40" alt="Patient">
+                                            <span>Sarah Johnson</span>
+                                        </div>
+                                    </td>
+                                    <td>Dr. Lee</td>
+                                    <td>Neurology</td>
+                                    <td>Today, 11:45 AM</td>
+                                    <td><span class="status confirmed">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="patient-info">
+                                            <img src="https://via.placeholder.com/40" alt="Patient">
+                                            <span>Michael Brown</span>
+                                        </div>
+                                    </td>
+                                    <td>Dr. Wilson</td>
+                                    <td>Orthopedics</td>
+                                    <td>Today, 2:15 PM</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="patient-info">
+                                            <img src="https://via.placeholder.com/40" alt="Patient">
+                                            <span>Emily Davis</span>
+                                        </div>
+                                    </td>
+                                    <td>Dr. Garcia</td>
+                                    <td>Pediatrics</td>
+                                    <td>Tomorrow, 9:00 AM</td>
+                                    <td><span class="status confirmed">Confirmed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="patient-info">
+                                            <img src="https://via.placeholder.com/40" alt="Patient">
+                                            <span>Robert Wilson</span>
+                                        </div>
+                                    </td>
+                                    <td>Dr. Smith</td>
+                                    <td>Cardiology</td>
+                                    <td>Tomorrow, 10:30 AM</td>
+                                    <td><span class="status cancelled">Cancelled</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-hospital-alt"></i>
+                    <span>MediCare HMS</span>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2023 MediCare Hospital Management System. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Patient Chart
+        const patientCtx = document.getElementById('patientChart').getContext('2d');
+        const patientChart = new Chart(patientCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'New Patients',
+                    data: [120, 190, 170, 220, 250, 280, 300, 350, 320, 400, 380, 420],
+                    borderColor: '#4e73df',
+                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                    tension: 0.3,
+                    fill: true
+                }, {
+                    label: 'Returning Patients',
+                    data: [80, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320],
+                    borderColor: '#1cc88a',
+                    backgroundColor: 'rgba(28, 200, 138, 0.05)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

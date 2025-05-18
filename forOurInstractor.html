@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zewditu Hospital Management System</title>
+    <link rel="stylesheet" href="frontend/CSS/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header/Navbar -->
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-primary">Zewditu</span>
+                        <span class="logo-secondary">Hospital</span>
+                    </a>
+                </div>
+
+                <nav class="nav-desktop">
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="services/general-medicine.html">General Medicine</a></li>
+                                <li><a href="services/emergency-care.html">Emergency Care</a></li>
+                                <li><a href="services/specialized-care.html">Specialized Care</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="frontend/html/dashboard.html">Dashboard</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+
+
+                <button class="mobile-menu-btn" title="me">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <ul class="mobile-nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="doctors.html">Doctors</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+
+                    <li><a href="appointments.html" class="btn btn-primary mobile-btn">Book Appointment</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Zewditu Hospital Management System</h1>
+                        <p>Providing exceptional healthcare with compassion and excellence. Our state-of-the-art
+                            facilities and experienced medical professionals are dedicated to your well-being.</p>
+                        <div class="hero-buttons">
+                            <a href="frontend/html/patient-portal.html" class="btn btn-secondary">Patient Portal</a>
+                            <a href="frontend/html/bypass.html" class="btn btn-outline-white">Doctor Portal</a>
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+
+        <!-- Quick Access Section -->
+        <section class="quick-access">
+            <div class="container">
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon blue">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Appointment Booking</h3>
+                        <p>Schedule your visit online with our easy booking system</p>
+                        <a href="appointments.html" class="btn btn-primary">Book Now</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon green">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Patient Portal</h3>
+                        <p>Access your medical records and test results securely</p>
+                        <a href="frontend/html/patient-portal.html" class="btn btn-outline">Login</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon purple">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Emergency Contact</h3>
+                        <p>24/7 emergency services and helpline</p>
+                        <a href="tel:+251112345678" class="btn btn-secondary">Call Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Services</h2>
+                    <p>Zewditu Hospital offers a comprehensive range of medical services with state-of-the-art
+                        facilities and experienced healthcare professionals.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon blue">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h3>General Medicine</h3>
+                        <p>Comprehensive care for adults including preventive care, diagnosis and treatment of chronic
+                            and acute illnesses.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon green">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>24/7 Emergency Care</h3>
+                        <p>Round-the-clock emergency medical services with rapid response teams and advanced life
+                            support.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon purple">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Specialized Care</h3>
+                        <p>Expert care in cardiology, neurology, orthopedics, pediatrics, and other specialized fields.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon red">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Surgery</h3>
+                        <p>State-of-the-art surgical facilities with experienced surgeons specializing in various
+                            procedures.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon yellow">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Diagnostic Services</h3>
+                        <p>Advanced laboratory and imaging services including X-ray, MRI, CT scan, and ultrasound.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon teal">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Maternity Care</h3>
+                        <p>Comprehensive maternity services including prenatal care, delivery, and postnatal support.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-footer">
+                    <a href="services.html" class="btn btn-primary btn-lg">View All Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-counter">
+                        <div class="stat-number" data-count="50">0</div>
+                        <div class="stat-label">Experienced Doctors</div>
+                    </div>
+
+                    <div class="stat-counter">
+                        <div class="stat-number" data-count="200">0</div>
+                        <div class="stat-label">Hospital Beds</div>
+                    </div>
+
+                    <div class="stat-counter">
+                        <div class="stat-number" data-count="15000">0</div>
+                        <div class="stat-label">Patients Served Annually</div>
+                    </div>
+
+                    <div class="stat-counter">
+                        <div class="stat-number" data-count="25">0</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Patient Testimonials</h2>
+                    <p>Hear what our patients have to say about their experience at Zewditu Hospital.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p>"The care I received at Zewditu Hospital was exceptional. The doctors were knowledgeable and
+                            the staff was attentive and compassionate."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"></div>
+                            <div class="author-info">
+                                <h4>Abebe Kebede</h4>
+                                <p>Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p>"I was impressed by the modern facilities and the efficiency of the hospital. My surgery went
+                            smoothly and the follow-up care was excellent."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"></div>
+                            <div class="author-info">
+                                <h4>Sara Hailu</h4>
+                                <p>Patient</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p>"The pediatric department took excellent care of my child. The doctors were patient and
+                            explained everything clearly. I highly recommend Zewditu Hospital."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"></div>
+                            <div class="author-info">
+                                <h4>Tigist Mengistu</h4>
+                                <p>Parent</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Need Medical Assistance?</h2>
+                    <p>Our team of medical professionals is ready to provide you with the best care possible.</p>
+                    <div class="cta-buttons">
+                        <a href="appointments.html" class="btn btn-secondary btn-lg">Book an Appointment</a>
+                        <a href="contact.html" class="btn btn-outline-white btn-lg">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Hospital Info -->
+                <div class="footer-column">
+                    <h3>Zewditu Hospital</h3>
+                    <p>Providing exceptional healthcare services with compassion and excellence since 1998.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services/general-medicine.html">General Medicine</a></li>
+                        <li><a href="services/emergency-care.html">Emergency Care</a></li>
+                        <li><a href="services/specialized-care.html">Specialized Care</a></li>
+                        <li><a href="services/surgery.html">Surgery</a></li>
+                        <li><a href="services/diagnostic.html">Diagnostic Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Hospital Street, Addis Ababa, Ethiopia</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+251 11 234 5678</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@zewdituhospital.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Zewditu Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="frontend/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "javascript_class",
+  "version": "1.0.0",
+  "main": "Patient.js",
+  "type": "module",
+  "scripts": {
+    "type": "module",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "mysql2": "^3.14.1"
+  }
+}

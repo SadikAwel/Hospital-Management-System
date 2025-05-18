@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === General Profile Enhancements === */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header h1 {
+            color: #2c3e50;
+            font-weight: 600;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* === Doctor Profile Section Styling === */
+        #doctor-profile.profile-section.active {
+            display: flex;
+            gap: 25px;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+            margin-top: 20px;
+        }
+
+        /* Sidebar (Doctor's Info) */
+        .doctor-profile-sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .doctor-photo-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            border: 5px solid #fff;
+            box-shadow: 0 4px 12px rgba(0, 87, 178, 0.2);
+        }
+
+        .doctor-photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #doctorNameHeading {
+            text-align: center;
+            font-size: 1.75em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .doctor-specialty-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #3498db;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-divider {
+            border: 0;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 25px 0;
+        }
+
+        .doctor-profile-sidebar h4 {
+            font-size: 1.15em;
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .doctor-profile-sidebar h4 i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+
+        .doctor-profile-sidebar ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0.95em;
+        }
+
+        .doctor-profile-sidebar ul li {
+            margin-bottom: 10px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .doctor-profile-sidebar ul li i {
+            margin-right: 8px;
+            color: #5c6bc0;
+            width: 18px;
+            text-align: center;
+        }
+
+        .doctor-profile-sidebar ul li strong {
+            color: #333;
+            min-width: 70px;
+            display: inline-block;
+        }
+
+        .doctor-profile-sidebar ul li a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .doctor-profile-sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content Area (Actions & Forms) */
+        .doctor-profile-main {
+            flex-grow: 1;
+            display: flex;
+            gap: 20px;
+        }
+
+        .action-buttons-panel {
+            width: 280px;
+            flex-shrink: 0;
+            padding: 20px;
+            background-color: #fdfdff;
+            border-radius: 8px;
+            border: 1px solid #e7eaf3;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+
+        .action-buttons-panel h3 {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        .action-buttons-panel h3 i {
+            margin-right: 8px;
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .action-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-content-area {
+            flex-grow: 1;
+            min-height: 500px;
+        }
+
+        .form-wrapper {
+            display: none;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #e7eaf3;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-wrapper.active-form-content {
+            display: block;
+        }
+
+        .form-wrapper h3 {
+            font-size: 1.4em;
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e0e6ed;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-wrapper h3 i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .form-wrapper input[type="text"],
+        .form-wrapper input[type="number"],
+        .form-wrapper input[type="date"],
+        .form-wrapper input[type="email"],
+        .form-wrapper input[type="tel"],
+        .form-wrapper select,
+        .form-wrapper textarea {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        .form-wrapper input:focus,
+        .form-wrapper textarea:focus,
+        .form-wrapper select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.15rem rgba(52, 152, 219, 0.25);
+            outline: none;
+        }
+
+        .form-wrapper textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .submit-btn {
+            padding: 12px 25px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn i {
+            margin-right: 8px;
+        }
+
+        .submit-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Initial Welcome Message */
+        #initial-portal-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        #initial-portal-message h3 {
+            border-bottom: none;
+            margin-bottom: 10px;
+            justify-content: center;
+        }
+
+        .welcome-icon {
+            color: #bdc3c7;
+            margin-top: 30px;
+            font-size: 4em;
+        }
+
+        /* Patient Info Display */
+        #patient-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #patient-info p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        /* Bill Display Area */
+        .bill-display {
+            margin-top: 20px;
+            background-color: #e9f5fe;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #bde0fe;
+            color: #0b5394;
+            display: none;
+        }
+
+        /* Feedback/Output Areas */
+        .form-output {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .form-output.success {
+            background-color: #e6ffed;
+            color: #006421;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .form-output.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            display: block;
+        }
+
+        /* Date Display Styles */
+        .date-display {
+            font-size: 0.9em;
+            color: #666;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            #doctor-profile.profile-section.active {
+                flex-direction: column;
+            }
+
+            .doctor-profile-sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .doctor-profile-main {
+                flex-direction: column;
+            }
+
+            .action-buttons-panel {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-primary">Zewditu</span>
+                        <span class="logo-secondary">Hospital</span>
+                    </a>
+                </div>
+
+                <nav class="nav-desktop">
+                    <ul class="nav-links">
+                        <li><a href="../index.html" class="active">Home</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="services/general-medicine.html">General Medicine</a></li>
+                                <li><a href="services/emergency-care.html">Emergency Care</a></li>
+                                <li><a href="services/specialized-care.html">Specialized Care</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../../backend/server/myapp/aaa.html">Admin</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="nav-buttons page-header">
+                    <h3>Doctor Profile</h3>
+                </div>
+
+                <button class="mobile-menu-btn" title="me">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu">
+                <ul class="mobile-nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="doctors.html">Doctors</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="doctor-portal.html" class="btn btn-outline mobile-btn">Patient Portal</a></li>
+                    <li><a href="appointments.html" class="btn btn-primary mobile-btn">Book Appointment</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+
+
+        <section id="doctor-profile" class="profile-section active">
+            <!-- Sidebar with doctor info -->
+            <div class="doctor-profile-sidebar">
+                <div class="doctor-photo-container">
+                    <img src="../collection/emergency.jpg" alt="Doctor Photo">
+                </div>
+                <h2 id="doctorNameHeading">Dr. <span id="fullName">Abebe</span></h2>
+                <div class="doctor-specialty-display" id="doctorSpecialty">Cardiologist</div>
+                <hr class="sidebar-divider">
+
+                <h4><i class="fas fa-user-md"></i> Professional Info</h4>
+                <ul>
+                    <li><i class="fas fa-id-card"></i> <strong>ID:</strong> <span id="staffId">03</span></li>
+                    <li><i class="fas fa-user-tag"></i> <strong>Role:</strong> <span id="staffType">Doctor</span></li>
+                </ul>
+
+                <h4><i class="fas fa-info-circle"></i> Personal Info</h4>
+                <ul>
+                    <li><i class="fas fa-birthday-cake"></i> <strong>Age:</strong> <span id="staffAge">40</span></li>
+                    <li><i class="fas fa-phone"></i> <strong>Phone:</strong> <a id="staffPhoneLink" href="tel:"><span
+                                id="staffPhone">0911123445</span></a></li>
+                    <li><i class="fas fa-envelope"></i> <strong>Email:</strong> <a id="staffEmailLink"
+                            href="mailto:"><span id="staffEmail">abebe@gmail.com</span></a></li>
+                </ul>
+
+                <h4><i class="fas fa-calendar-alt"></i> Today</h4>
+                <ul>
+
+                    <li><i class="far fa-calendar"></i> <strong>Date: 00-00-00 </strong> <span id="currentDate"></span>
+                    </li>
+                    <li><i class="far fa-clock"></i> <strong>Time: 00:00</strong> <span id="currentTime"></span></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="doctor-profile-main">
+                <!-- Action Buttons -->
+                <div class="action-buttons-panel">
+                    <h3><i class="fas fa-cogs"></i> Quick Actions</h3>
+                    <button class="action-btn" onclick="showForm('editForm')">
+                        <i class="fas fa-user-edit"></i> Edit Profile
+                    </button>
+                    <button class="action-btn" onclick="showForm('scheduleForm')">
+                        <i class="fas fa-calendar-alt"></i> My Schedule
+                    </button>
+                    <button class="action-btn" onclick="showForm('patientProfileForm')">
+                        <i class="fas fa-user-injured"></i> Patient Profile
+                    </button>
+                    <button class="action-btn" onclick="showForm('appointmentForm')">
+                        <i class="fas fa-calendar-check"></i> Appointments
+                    </button>
+                    <button class="action-btn" onclick="showForm('patientHistoryForm')">
+                        <i class="fas fa-file-medical"></i> update Patient History
+                    </button>
+                    <button class="action-btn" onclick="showForm('billingForm')">
+                        <i class="fas fa-file-invoice-dollar"></i> Billing
+                    </button>
+                </div>
+
+                <!-- Form Area -->
+                <div class="form-content-area">
+                    <!-- Initial Welcome -->
+                    <div id="initial-portal-message" class="form-wrapper active-form-content">
+                        <h3><i class="fas fa-door-open"></i> Welcome Back, <span class="fullNameWelcome">Doctor</span>
+                        </h3>
+                        <p>Please select an action from the panel to begin.</p>
+                        <div class="welcome-icon"><i class="fas fa-user-md"></i></div>
+                        <div class="date-display" id="welcomeDateDisplay"></div>
+                    </div>
+
+                    <!-- Edit Profile Form -->
+                    <div id="editForm" class="form-wrapper">
+                        <h3><i class="fas fa-user-edit"></i> Edit Profile Information</h3>
+                        <form id="editProfileForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="editFirstName">First Name</label>
+                                    <input type="text" id="editFirstName" placeholder="First Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editLastName">Last Name</label>
+                                    <input type="text" id="editLastName" placeholder="Last Name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editSpecialty">Specialty</label>
+                                <input type="text" id="editSpecialty" placeholder="Specialty" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="editPhone">Phone Number</label>
+                                    <input type="tel" id="editPhone" placeholder="Phone Number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmail">Email</label>
+                                    <input type="email" id="editEmail" placeholder="Email" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editBio">Professional Bio</label>
+                                <textarea id="editBio"
+                                    placeholder="Tell us about your professional background"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                            <div class="date-display">Last updated: <span id="lastUpdatedDate"></span></div>
+                        </form>
+                    </div>
+
+                    <!-- Schedule Form -->
+                    <div id="scheduleForm" class="form-wrapper">
+                        <h3><i class="fas fa-calendar-alt"></i> Manage Schedule</h3>
+
+                        <form id="doctorScheduleForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="scheduleDate">Date</label>
+                                    <input type="date" id="scheduleDate" name="date" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="scheduleTime">Time</label>
+                                    <input type="time" id="scheduleTime" name="time" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="scheduleLocation">Location</label>
+                                <select id="scheduleLocation" name="location" required>
+                                    <option value="">-- Select Location --</option>
+                                    <option value="Main Hospital">Main Hospital</option>
+                                    <option value="North Clinic">North Clinic</option>
+                                    <option value="South Clinic">South Clinic</option>
+                                    <option value="Telemedicine">Telemedicine</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="scheduleNotes">Notes (Optional)</label>
+                                <textarea id="scheduleNotes" name="notes" rows="3"
+                                    placeholder="Add any extra notes..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">Add to Schedule</button>
+                        </form>
+
+
+
+
+                        <div class="form-group">
+                            <label for="scheduleNotes">Notes</label>
+                            <textarea id="scheduleNotes" placeholder="Any special notes about this schedule"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-calendar-plus"></i> Add to Schedule
+                        </button>
+                        <div class="date-display">Today is <span id="scheduleCurrentDate"></span></div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Patient Profile Form -->
+                <div id="patientProfileForm" class="form-wrapper">
+                    <h3><i class="fas fa-user-injured"></i> Patient Profile Lookup</h3>
+                    <form id="patientLookupForm" onsubmit="findPatient(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="doctorId">Your Doctor ID</label>
+                                <input type="number" id="doctorId" placeholder="Enter your Doctor ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patientId">Patient ID</label>
+                                <input type="number" id="patientId" placeholder="Enter Patient ID" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-search"></i> Find Patient
+                        </button>
+
+                        <div id="patientInfo" style="display: none; margin-top: 20px;">
+                            <h4><i class="fas fa-user-circle"></i> Patient Details</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <p id="patientFirstName">-</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <p id="patientLastName">-</p>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Age</label>
+                                    <p id="patientAge">-</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <p id="patientGender">-</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Contact</label>
+                                <p id="patientPhone">-</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Visit</label>
+                                <p id="patientLastVisit">-</p>
+                            </div>
+                        </div>
+                        <div class="date-display">Query date: <span id="patientQueryDate"></span></div>
+                    </form>
+                </div>
+
+                <!-- Appointment Form -->
+                <div id="appointmentForm" class="form-wrapper">
+                    <h3><i class="fas fa-calendar-check"></i> Manage Appointments</h3>
+                    <form id="appointmentManagementForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDoctorId">Doctor ID</label>
+                                <input type="number" id="appointmentDoctorId" placeholder="Doctor ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentPatientId">Patient ID</label>
+                                <input type="number" id="appointmentPatientId" placeholder="Patient ID" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDate">Appointment Date</label>
+                                <input type="date" id="appointmentDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentTime">Time</label>
+                                <input type="time" id="appointmentTime" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentNotes">Notes</label>
+                            <textarea id="appointmentNotes" placeholder="Appointment notes"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <button type="submit" class="submit-btn" style="background-color: #3498db;">
+                                <i class="fas fa-search"></i> Check Availability
+                            </button>
+                            <button type="button" class="submit-btn" onclick="submitInsertAppointment()">
+                                <i class="fas fa-calendar-plus"></i> Schedule Appointment
+                            </button>
+                        </div>
+                        <div class="date-display">Current time: <span id="appointmentCurrentTime"></span></div>
+                    </form>
+                </div>
+
+                <!-- Patient History Form -->
+                <div id="patientHistoryForm" class="form-wrapper">
+                    <h3><i class="fas fa-file-medical"></i> Update Patient History</h3>
+                    <form id="patientHistoryUpdateForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="historyStaffId">Your Staff ID</label>
+                                <input type="number" id="historyStaffId" placeholder="Your Staff ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="historyPatientId">Patient ID</label>
+                                <input type="number" id="historyPatientId" placeholder="Patient ID" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="historyDiagnosis">Diagnosis</label>
+                            <input type="text" id="historyDiagnosis" placeholder="Diagnosis">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="historyTreatment">Treatment</label>
+                            <input type="text" id="historyTreatment" placeholder="Treatment">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="historyPrescription">Prescription</label>
+                                <input type="text" id="historyPrescription" placeholder="Prescription">
+                            </div>
+                            <div class="form-group">
+                                <label for="historyLabResults">Lab Results</label>
+                                <input type="text" id="historyLabResults" placeholder="Lab Results">
+                            </div>
+                        </div>
+
+                        <button type="button" class="submit-btn" onclick="editPatientDetails()">
+                            <i class="fas fa-save"></i> Update Patient Record
+                        </button>
+
+                        <div id="historyOutput" class="form-output"></div>
+                        <div class="date-display">Record updated: <span id="historyUpdateDate"></span></div>
+                    </form>
+                </div>
+
+                <!-- Billing Form -->
+                <div id="billingForm" class="form-wrapper">
+                    <h3><i class="fas fa-file-invoice-dollar"></i> Patient Billing</h3>
+                    <form id="patientBillingForm">
+                        <div class="form-group">
+                            <label for="billingPatientId">Patient ID</label>
+                            <input type="number" id="billingPatientId" placeholder="Enter Patient ID" required>
+                        </div>
+
+                        <div class="form-row">
+                            <button type="button" class="submit-btn" onclick="displayBill()">
+                                <i class="fas fa-search"></i> Find Bill
+                            </button>
+                            <button type="button" class="submit-btn" style="background-color: #e67e22;">
+                                <i class="fas fa-file-pdf"></i> Generate PDF
+                            </button>
+                        </div>
+
+                        <div id="billDisplay" class="bill-display">
+                            <h4>Billing Details</h4>
+                            <div id="billDetails"></div>
+                        </div>
+
+                        <div class="date-display">As of <span id="billingCurrentDate"></span></div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    </section>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Hospital Info -->
+                <div class="footer-column">
+                    <h3>Zewditu Hospital</h3>
+                    <p>Providing exceptional healthcare services with compassion and excellence since 1998.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services/general-medicine.html">General Medicine</a></li>
+                        <li><a href="services/emergency-care.html">Emergency Care</a></li>
+                        <li><a href="services/specialized-care.html">Specialized Care</a></li>
+                        <li><a href="services/surgery.html">Surgery</a></li>
+                        <li><a href="services/diagnostic.html">Diagnostic Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Hospital Street, Addis Ababa, Ethiopia</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+251 11 234 5678</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@zewdituhospital.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Zewditu Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let currentStaffData = null;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            loadStaffData();
+            initializeDateDisplays();
+            setInterval(updateClock, 1000);
+
+            // Set up form submissions
+            document.getElementById('editProfileForm').addEventListener('submit', saveProfileChanges);
+            document.getElementById('doctorScheduleForm').addEventListener('submit', saveSchedule);
+            document.getElementById('patientLookupForm').addEventListener('submit', findPatient);
+            document.getElementById('appointmentManagementForm').addEventListener('submit', checkAppointmentAvailability);
+        });
+
+        // Load staff data from localStorage
+        function loadStaffData() {
+            const staffData = JSON.parse(localStorage.getItem('staff'));
+
+            if (!staffData) {
+                alert('You are not logged in. Redirecting to login page...');
+
+
+            }
+
+            currentStaffData = staffData;
+            populateStaffData(staffData);
+        }
+
+        // Populate staff data in the UI
+        function populateStaffData(staffData) {
+            // Sidebar info
+            document.getElementById('fullName').textContent = `${staffData.firstName} ${staffData.lastName}`;
+            document.querySelectorAll('.fullNameWelcome').forEach(el => {
+                el.textContent = `${staffData.firstName} ${staffData.lastName}`;
+            });
+
+            // Professional info
+            document.getElementById('staffId').textContent = staffData.id || 'N/A';
+            document.getElementById('staffType').textContent = staffData.userType || 'N/A';
+
+            // Personal info
+            document.getElementById('staffAge').textContent = staffData.age || 'N/A';
+            document.getElementById('staffPhone').textContent = staffData.phoneNumber || 'N/A';
+            document.getElementById('staffEmail').textContent = staffData.email || 'N/A';
+            document.getElementById('staffPhoneLink').href = `tel:${staffData.phoneNumber || ''}`;
+            document.getElementById('staffEmailLink').href = `mailto:${staffData.email || ''}`;
+
+            // Edit form defaults
+            document.getElementById('editFirstName').value = staffData.firstName || '';
+            document.getElementById('editLastName').value = staffData.lastName || '';
+            document.getElementById('editSpecialty').value = staffData.specialty || '';
+            document.getElementById('editPhone').value = staffData.phoneNumber || '';
+            document.getElementById('editEmail').value = staffData.email || '';
+            document.getElementById('editBio').value = staffData.bio || '';
+
+            // Set default IDs in forms
+            document.getElementById('doctorId').value = staffData.id || '';
+            document.getElementById('appointmentDoctorId').value = staffData.id || '';
+            document.getElementById('historyStaffId').value = staffData.id || '';
+        }
+
+        // Initialize all date displays
+        function initializeDateDisplays() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+
+            // Format today's date
+            const todayFormatted = now.toLocaleDateString('en-US', options);
+
+            // Set dates in various sections
+            document.getElementById('currentDate').textContent = todayFormatted;
+            document.getElementById('welcomeDateDisplay').textContent = todayFormatted;
+            document.getElementById('scheduleCurrentDate').textContent = todayFormatted;
+            document.getElementById('patientQueryDate').textContent = todayFormatted;
+            document.getElementById('appointmentCurrentTime').textContent = formatTime(now);
+            document.getElementById('historyUpdateDate').textContent = todayFormatted;
+            document.getElementById('billingCurrentDate').textContent = todayFormatted;
+            document.getElementById('lastUpdatedDate').textContent = todayFormatted;
+
+            // Set default date in date pickers to today
+            document.getElementById('scheduleDate').valueAsDate = now;
+            document.getElementById('appointmentDate').valueAsDate = now;
+        }
+
+        // Update clock in real-time
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('currentTime').textContent = formatTime(now);
+            document.getElementById('appointmentCurrentTime').textContent = formatTime(now);
+        }
+
+        // Format time as HH:MM:SS AM/PM
+        function formatTime(date) {
+            return date.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+        }
+
+        // Show the selected form
+        function showForm(formId) {
+            // Hide all forms
+            document.querySelectorAll('.form-wrapper').forEach(form => {
+                form.classList.remove('active-form-content');
+            });
+
+            // Show the selected form
+            const formToShow = document.getElementById(formId);
+            if (formToShow) {
+                formToShow.classList.add('active-form-content');
+
+                // Update any date displays in the form
+                const now = new Date();
+                const dateDisplay = formToShow.querySelector('.date-display span');
+                if (dateDisplay) {
+                    dateDisplay.textContent = now.toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                }
+            }
+        }
+
+        // Save profile changes
+        function saveProfileChanges(e) {
+            e.preventDefault();
+
+            // Get form values
+            const updatedData = {
+                firstName: document.getElementById('editFirstName').value,
+                lastName: document.getElementById('editLastName').value,
+                specialty: document.getElementById('editSpecialty').value,
+                phoneNumber: document.getElementById('editPhone').value,
+                email: document.getElementById('editEmail').value,
+                bio: document.getElementById('editBio').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            // Update local storage
+            const staffData = JSON.parse(localStorage.getItem('staff'));
+            const updatedStaffData = { ...staffData, ...updatedData };
+            localStorage.setItem('staff', JSON.stringify(updatedStaffData));
+
+            // Update UI
+            populateStaffData(updatedStaffData);
+
+            // Show success message
+            alert('Profile updated successfully!');
+
+            // Update last updated date
+            document.getElementById('lastUpdatedDate').textContent =
+                new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+        }
+
+        // Save schedule
+        function saveSchedule(e) {
+            e.preventDefault();
+            alert('Schedule functionality will be implemented in the next version.');
+            // Here you would typically send the data to your backend
+        }
+
+        // Find patient
+        async function findPatient(e) {
+            e.preventDefault();
+
+            const doctorId = document.getElementById('doctorId').value;
+            const patientId = document.getElementById('patientId').value;
+
+            if (!doctorId || !patientId) {
+                alert('Please enter both Doctor ID and Patient ID');
+                return;
+            }
+
+            try {
+                // Simulate API call - replace with actual fetch in your implementation
+                // const response = await fetch(`http://localhost:4000/doctor/${doctorId}/patient/${patientId}`);
+                // const patient = await response.json();
+
+                // Mock patient data for demonstration
+                const patient = {
+                    id: patientId,
+                    firstName: 'Mock',
+                    lastName: 'Patient',
+                    age: 35,
+                    gender: 'Male',
+                    phoneNumber: '+251-911-123456',
+                    lastVisit: '2023-06-15'
+                };
+
+                // Display patient info
+                document.getElementById('patientFirstName').textContent = patient.firstName;
+                document.getElementById('patientLastName').textContent = patient.lastName;
+                document.getElementById('patientAge').textContent = patient.age;
+                document.getElementById('patientGender').textContent = patient.gender;
+                document.getElementById('patientPhone').textContent = patient.phoneNumber;
+                document.getElementById('patientLastVisit').textContent =
+                    new Date(patient.lastVisit).toLocaleDateString();
+
+                // Show patient info section
+                document.getElementById('patientInfo').style.display = 'block';
+
+                // Update query date
+                document.getElementById('patientQueryDate').textContent =
+                    new Date().toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+            } catch (err) {
+                console.error('Error fetching patient:', err);
+                alert('Could not fetch patient: ' + err.message);
+            }
+        }
+
+        // Check appointment availability
+        function checkAppointmentAvailability(e) {
+            e.preventDefault();
+            alert('Appointment availability check will be implemented in the next version.');
+            // Here you would typically send the data to your backend
+        }
+
+        // Submit appointment
+        async function submitInsertAppointment() {
+            const doctorId = document.getElementById('appointmentDoctorId').value;
+            const patientId = document.getElementById('appointmentPatientId').value;
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+            const notes = document.getElementById('appointmentNotes').value;
+
+            if (!doctorId || !patientId || !date || !time) {
+                alert('Please fill all required fields');
+                return;
+            }
+
+            const appointmentData = {
+                doctorId,
+                patientId,
+                dateTime: `${date}T${time}`,
+                notes
+            };
+
+            try {
+                // Simulate API call - replace with actual fetch in your implementation
+                // const response = await fetch('http://localhost:4000/api/appointments', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(appointmentData)
+                // });
+                // const result = await response.json();
+
+                // Mock success response
+                const result = { success: true, message: 'Appointment scheduled successfully!' };
+
+                alert(result.message);
+
+                // Update current time display
+                document.getElementById('appointmentCurrentTime').textContent =
+                    new Date().toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true
+                    });
+
+            } catch (error) {
+                console.error('Error inserting appointment:', error);
+                alert('Failed to insert appointment');
+            }
+        }
+
+        // Edit patient details
+        async function editPatientDetails() {
+            const staffId = document.getElementById('historyStaffId').value;
+            const patientId = document.getElementById('historyPatientId').value;
+
+            if (!staffId || !patientId) {
+                alert('Please enter both Staff ID and Patient ID');
+                return;
+            }
+
+            const body = {
+                Diagnosis: document.getElementById('historyDiagnosis').value,
+                Treatment: document.getElementById('historyTreatment').value,
+                Prescription: document.getElementById('historyPrescription').value,
+                LabResults: document.getElementById('historyLabResults').value,
+                DoctorID: staffId,
+            };
+
+            try {
+                //Simulate API call - replace with actual fetch in your implementation
+                const res = await fetch(`http://localhost:4000/staff/${staffId}/patient/${patientId}/edit`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                const data = await res.text();
+
+
+                //const data = 'Patient record updated successfully!';
+
+                const output = document.getElementById('historyOutput');
+                output.textContent = data;
+                output.className = 'form-output success';
+                output.style.display = 'block';
+
+                // Update the history update date
+                document.getElementById('historyUpdateDate').textContent =
+                    new Date().toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+            } catch (err) {
+                const output = document.getElementById('historyOutput');
+                output.textContent = 'Error: ' + err.message;
+                output.className = 'form-output error';
+                output.style.display = 'block';
+            }
+        }
+        async function displayBill() {
+            const patientId = document.getElementById('billingPatientId').value;
+            const staffId = document.getElementById('staffId').value; // make sure this exists
+
+            if (!patientId) {
+                alert('Please enter a Patient ID');
+                return;
+            }
+
+            try {
+                const staffId = 1; // Or get this dynamically if needed
+                const response = await fetch(`http://localhost:4000/staff/patient/${patientId}/bill`);
+                if (!response.ok) throw new Error("Server error: " + response.statusText);
+
+                const billData = await response.json();
+
+                const billDetails = document.getElementById('billDetails');
+                billDetails.innerHTML = `
+    <p><strong>Patient:</strong> ${billData[0].PatientName} (ID: ${patientId})</p>
+    <p><strong>Date Issued:</strong> ${new Date(billData[0].DateIssued).toLocaleDateString()}</p>
+    <hr>
+    <h5>Bill Details:</h5>
+    <ul style="list-style-type: none; padding-left: 0;">
+        <li style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span>Amount</span>
+            <span>$${parseFloat(billData[0].Amount).toFixed(2)}</span>
+        </li>
+        <li style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span>Payment Status</span>
+            <span>${billData[0].PaymentStatus}</span>
+        </li>
+        <li style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span>Insurance Claimed</span>
+            <span>${billData[0].InsuranceClaimed === "1" ? "Yes" : "No"}</span>
+        </li>
+    </ul>
+`;
+
+
+                document.getElementById('billDisplay').style.display = 'block';
+                document.getElementById('billingCurrentDate').textContent =
+                    new Date().toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+            } catch (err) {
+                console.error('Error fetching bill:', err);
+                alert('Could not fetch bill: ' + err.message);
+            }
+        }
+
+
+    </script>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

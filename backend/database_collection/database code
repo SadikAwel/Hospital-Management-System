@@ -1,0 +1,127 @@
+-- ----------------------------
+-- 1. Patient Registration
+-- ----------------------------
+CREATE TABLE Patients (
+  PatientID INT AUTO_INCREMENT PRIMARY KEY,
+  FirstName VARCHAR(100),
+  LastName VARCHAR(100),
+  DOB DATE,
+  Gender ENUM('Male', 'Female'),
+  Address TEXT,
+  ContactNumber VARCHAR(15),
+  Email VARCHAR(100),
+  InsuranceProvider VARCHAR(100),
+  InsuranceNumber VARCHAR(50),
+  EmergencyContact VARCHAR(100),
+  HsswordHash TEXT
+);
+
+-- ----------------------------
+-- 5. Doctor and Staff Management
+-- ----------------------------
+CREATE TABLE Staff (
+  StaffID INT AUTO_INCREMENT PRIMARY KEY,
+  FirstName VARCHAR(100),
+  LastName VARCHAR(100),
+  Role ENUM('Doctor', 'Nurse', 'Receptionist', 'Admin', 'LabTech'),
+  Specialization VARCHAR(100),
+  ContactNumber VARCHAR(15),
+  Email VARCHAR(100),
+  Username VARCHAR(50) UNIQUE,
+  PasswordHash TEXT,
+  userType ENUM('Admin', 'Full', 'Limited', 'ViewOnly'),
+  age INT,
+  Department VARCHAR(50)
+);
+
+-- ----------------------------
+-- 2. Appointment Scheduling
+-- ----------------------------
+CREATE TABLE Appointments (
+  AppointmentID INT AUTO_INCREMENT PRIMARY KEY,
+  PatientID INT,
+  DoctorID INT,
+  AppointmentDate DATETIME,
+  Status ENUM('Scheduled', 'Completed', 'Cancelled'),
+  Notes TEXT,
+  FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+  FOREIGN KEY (DoctorID) REFERENCES Staff(StaffID)
+);
+
+-- ----------------------------
+-- 3. Medical Records
+-- ----------------------------
+CREATE TABLE MedicalRecords (
+  RecordID INT AUTO_INCREMENT PRIMARY KEY,
+  PatientID INT,
+  VisitDate DATETIME,
+  Diagnosis TEXT,
+  Treatment TEXT,
+  Prescription TEXT,
+  LabResults TEXT,
+  DoctorID INT,
+  FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+  FOREIGN KEY (DoctorID) REFERENCES Staff(StaffID)
+);
+
+-- ----------------------------
+-- 4. Billing and Invoicing
+-- ----------------------------
+CREATE TABLE Billing (
+  BillID INT AUTO_INCREMENT PRIMARY KEY,
+  PatientID INT,
+  AppointmentID INT,
+  Amount DECIMAL(10,2),
+  PaymentStatus ENUM('Paid', 'Due', 'Pending Insurance'),
+  InsuranceClaimed BOOLEAN,
+  DateIssued DATE,
+  FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+  FOREIGN KEY (AppointmentID) REFERENCES Appointments(AppointmentID)
+);
+
+-- ----------------------------
+-- 6. Pharmacy Management
+-- ----------------------------
+CREATE TABLE Medications (
+  MedicationID INT AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(100),
+  Description TEXT,
+  QuantityInStock INT,
+  ExpiryDate DATE
+);
+
+CREATE TABLE Prescriptions (
+  PrescriptionID INT AUTO_INCREMENT PRIMARY KEY,
+  PatientID INT,
+  DoctorID INT,
+  MedicationID INT,
+  Dosage VARCHAR(50),
+  Frequency VARCHAR(50),
+  StartDate DATE,
+  EndDate DATE,
+  FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+  FOREIGN KEY (DoctorID) REFERENCES Staff(StaffID),
+  FOREIGN KEY (MedicationID) REFERENCES Medications(MedicationID)
+);
+
+-- ----------------------------
+-- 7. Laboratory Management
+-- ----------------------------
+CREATE TABLE LabTests (
+  LabTestID INT AUTO_INCREMENT PRIMARY KEY,
+  TestName VARCHAR(100),
+  Description TEXT,
+  Cost DECIMAL(10,2)
+);
+
+CREATE TABLE LabResults (
+  ResultID INT AUTO_INCREMENT PRIMARY KEY,
+  PatientID INT,
+  LabTestID INT,
+  DoctorID INT,
+  Result TEXT,
+  TestDate DATE,
+  FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+  FOREIGN KEY (LabTestID) REFERENCES LabTests(LabTestID),
+  FOREIGN KEY (DoctorID) REFERENCES Staff(StaffID)
+);

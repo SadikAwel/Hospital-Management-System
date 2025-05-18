@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body style="background-color:rgb(74, 70, 70)">
+  <form id="myForm">
+    <input type="text" id="patientId" placeholder="Enter Patient ID" />
+    <button type="submit">Get Patient Data</button>
+  </form>
+
+  <div id="result"></div>
+
+
+  <script>
+
+    document.getElementById("myForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const id = document.getElementById("patientId").value;
+      console.log("value");
+      console.log(window.location.origin);
+      try {
+        const response = await fetch(`http://127.0.0.1:4000/mypath/go/${id}`);
+        const data = await response.json();
+        document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+        console.log(data);
+        await console.log(response);
+      } catch {
+        console.log(data);
+        await console.log(data[1]);
+      }
+    });
+
+
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Staff Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #0056b3;
+        }
+
+        .form-section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        input {
+            padding: 8px;
+            margin: 6px 6px 6px 0;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            max-height: 200px;
+        }
+
+        .side-by-side {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            flex: 1;
+            min-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🏥 Hospital Staff Panel</h1>
+
+    <div class="form-section">
+        <h3>🔍 Get Staff Info</h3>
+        <input id="staffId" placeholder="Staff ID" />
+        <button onclick="getStaff()">Fetch Staff</button>
+        <pre id="staffOutput"></pre>
+    </div>
+
+    <div class="form-section">
+        <h3>📝 Add Staff Data</h3>
+        <div class="side-by-side">
+            <div class="box">
+                <input id="addStaffId" placeholder="Staff ID" />
+                <input id="department" placeholder="Department" />
+                <input id="specialization" placeholder="Specialization" />
+                <input id="username" placeholder="Username" />
+                <button onclick="addStaffData()">Submit Data</button>
+            </div>
+        </div>
+        <pre id="addStaffOutput"></pre>
+    </div>
+
+    <div class="form-section">
+        <h3>👤 View Patient Profile</h3>
+        <input id="staffId2" placeholder="Staff ID" />
+        <input id="patientId" placeholder="Patient ID" />
+        <button onclick="getPatientProfile()">Fetch Patient</button>
+        <pre id="patientOutput"></pre>
+    </div>
+
+    <div class="form-section">
+        <h3>✏️ Edit Patient Details</h3>
+        <input id="staffId3" placeholder="Staff ID" />
+        <input id="patientId3" placeholder="Patient ID" />
+        <input id="diagnosis" placeholder="Diagnosis" />
+        <input id="treatment" placeholder="Treatment" />
+        <input id="prescription" placeholder="Prescription" />
+        <input id="labResults" placeholder="Lab Results" />
+        <input id="editDoctorId" placeholder="Doctor ID" />
+        <button onclick="editPatientDetails()">Submit Edit</button>
+        <pre id="editOutput"></pre>
+    </div>
+
+    <div class="form-section">
+        <h3>📅 Update Appointment</h3>
+        <input id="staffId4" placeholder="Staff ID" />
+        <input id="patientId4" placeholder="Patient ID" />
+        <input id="appointmentDoctorId" placeholder="Doctor ID" />
+        <input id="appointmentDate" placeholder="Appointment Date" />
+        <input id="note" placeholder="Note" />
+        <button onclick="updateAppointment()">Update</button>
+        <pre id="appointmentOutput"></pre>
+    </div>
+
+    <div class="form-section">
+        <h3>💵 View Billing Info</h3>
+        <input id="staffId5" placeholder="Staff ID" />
+        <input id="patientId5" placeholder="Patient ID" />
+        <button onclick="getBill()">Show Bill</button>
+        <pre id="billOutput"></pre>
+    </div>
+
+    <script>
+        const BASE_URL = "http://localhost:4000";
+
+        async function getStaff() {
+            try {
+                const id = document.getElementById("staffId").value;
+                const res = await fetch(`${BASE_URL}/staff/${id}`);
+                const data = await res.ok ? await res.json() : await res.text();
+                document.getElementById("staffOutput").textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById("staffOutput").textContent = "Error: " + err.message;
+            }
+        }
+
+        async function addStaffData() {
+            try {
+                const id = document.getElementById("addStaffId").value;
+                const body = {
+                    department: document.getElementById("department").value,
+                    specialization: document.getElementById("specialization").value,
+                    username: document.getElementById("username").value
+                };
+
+                const res = await fetch(`${BASE_URL}/staff/${id}/addData`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.text();
+                document.getElementById("addStaffOutput").textContent = data;
+            } catch (err) {
+                document.getElementById("addStaffOutput").textContent = "Error: " + err.message;
+            }
+        }
+
+        async function getPatientProfile() {
+            try {
+                const staffId = document.getElementById("staffId2").value;
+                const patientId = document.getElementById("patientId").value;
+
+                const res = await fetch(`${BASE_URL}/staff/${staffId}/patient/${patientId}`);
+                const data = await res.ok ? await res.json() : await res.text();
+                document.getElementById("patientOutput").textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById("patientOutput").textContent = "Error: " + err.message;
+            }
+        }
+
+
+
+        async function updateAppointment() {
+            try {
+                const staffId = document.getElementById("staffId4").value;
+                const patientId = document.getElementById("patientId4").value;
+                const body = {
+                    DoctorID: document.getElementById("appointmentDoctorId").value,
+                    AppointmentDate: document.getElementById("appointmentDate").value,
+                    note: document.getElementById("note").value
+                };
+
+                const res = await fetch(`${BASE_URL}/staff/${staffId}/patient/${patientId}/appointment`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.text();
+                document.getElementById("appointmentOutput").textContent = data;
+            } catch (err) {
+                document.getElementById("appointmentOutput").textContent = "Error: " + err.message;
+            }
+        }
+
+        async function getBill() {
+            try {
+                const staffId = document.getElementById("staffId5").value;
+                const patientId = document.getElementById("patientId5").value;
+
+                const res = await fetch(`${BASE_URL}/staff/${staffId}/patient/${patientId}/bill`);
+                const data = await res.ok ? await res.json() : await res.text();
+                document.getElementById("billOutput").textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                document.getElementById("billOutput").textContent = "Error: " + err.message;
+            }
+        }
+    </script>
+</body>
+
+</html>

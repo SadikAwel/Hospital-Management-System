@@ -1,0 +1,78 @@
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Center the buttons horizontally */
+  margin: 20px;
+
+}
+
+.button-group button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #0056b3;
+}
+
+.button-group button:active {
+  transform: scale(0.98);
+}
+.profile-section {
+  padding: 20px;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.search-column, .profile-column {
+  flex: 1;
+  min-width: 300px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.search-column input,
+.profile-column input {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.search-column button,
+.profile-column button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.search-column button:hover,
+.profile-column button:hover {
+  background-color: #0056b3;
+}
+
+.patient-card {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 15px;
+}

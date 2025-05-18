@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel=stylesheet href="../css/index.css">
+  </link>
+  <link rel=stylesheet href="../css/bootstrap.css">
+  </link>
+  <link rel="stylesheet" href="../css/index.css">
+  </link>
+  </link>
+  <link rel="stylesheet" href="../css/login.css">
+  </link>
+  <title>Zewditu Hospital Managment System</title>
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg  mb-auto">
+    <div class="container-fluid ">
+      <div class="Title_text">Zewditu Integrated System</div>
+      <button class="toggle navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmanu"
+        title="toggler-icon">
+        <div class="navbar-toggler-icon"></div>
+      </button>
+
+      <div class="collapse navbar-collapse ms-auto" id="navmanu">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item me-auto">
+            <a href="" class="nav-link">contact</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">about us</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class=" login-container">
+    <div class="login-card">
+      <div class="logo"> <img src="https://img.icons8.com/ios-filled/100/4A90E2/hospital-room.png"
+          alt="Hospital Logo" /> </div>
+      <h2>Staff Login</h2>
+      <p>Welcome back, doctor or nurse. Please login to access the system.</p>
+      <form id="loginForm">
+        <input type="text" id="emailOrUsername" placeholder="Staff ID or Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" id="loginButton">Login</button>
+      </form>
+      <div class="footer-links"> <a href="#">Forgot Password?</a> | <a href="#">Contact IT Support</a> </div>
+    </div>
+  </div>
+
+
+  <script>
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const emailOrUsername = document.getElementById("emailOrUsername").value;
+      const password = document.getElementById("password").value;
+      const loginButton = document.getElementById("loginButton");
+
+      // Disable button during request to prevent double-submission
+      loginButton.disabled = true;
+      loginButton.textContent = "Logging in...";
+
+      try {
+        const response = await fetch("http://localhost:4000/staff/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ emailOrUsername, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // ✅ Save staff info locally
+          localStorage.setItem("staff", JSON.stringify(data.staff));
+
+          // You can redirect or show welcome message
+          alert("Login successful!");
+          window.location.href = "../login.html"; // or whatever your next page is
+        } else {
+          alert(data.message || "Login failed");
+        }
+      } catch (error) {
+        console.error("Login error:", error);
+        alert("Server error. Please try again later.");
+      }
+    });
+  </script>
+
+
+  <script src="../js/index.js"></script>
+  <script src="../frontend/js/bootstrap.js"></script>
+</body>
+
+</html>
+
+
+
+
+<script>
+
+
+
+
+
+</script>
+</body>
+
+</html>
