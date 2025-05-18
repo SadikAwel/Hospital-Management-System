@@ -1,4 +1,4 @@
-# Doctor Profile Management System
+# Hospital Management System
 
 ![Doctor page](frontend/collection/drpage.png)
 
